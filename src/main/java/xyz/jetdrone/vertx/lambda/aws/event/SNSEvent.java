@@ -22,21 +22,12 @@ public class SNSEvent {
     return json;
   }
 
-  /**
-   * (Required)
-   */
-  private List<SNSEventRecord> records = new ArrayList<SNSEventRecord>();
+  private List<SNSEventRecord> records = new ArrayList<>();
 
-  /**
-   * (Required)
-   */
   public List<SNSEventRecord> getRecords() {
     return records;
   }
 
-  /**
-   * (Required)
-   */
   public SNSEvent setRecords(List<SNSEventRecord> records) {
     this.records = records;
     return this;

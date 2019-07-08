@@ -62,7 +62,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <graal.version>19.0.0</graal.version>
+    <graal.version>19.1.0</graal.version>
     <vertx.version>3.7.1</vertx.version>
   </properties>
 

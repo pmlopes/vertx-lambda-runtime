@@ -22,59 +22,32 @@ public class IAMPolicyStatement {
     return json;
   }
 
-  /**
-   * (Required)
-   */
-  private List<String> action = new ArrayList<String>();
-  /**
-   * (Required)
-   */
+  private List<String> action = new ArrayList<>();
   private String effect;
-  /**
-   * (Required)
-   */
-  private List<String> resource = new ArrayList<String>();
+  private List<String> resource = new ArrayList<>();
 
-  /**
-   * (Required)
-   */
   public List<String> getAction() {
     return action;
   }
 
-  /**
-   * (Required)
-   */
   public IAMPolicyStatement setAction(List<String> action) {
     this.action = action;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getEffect() {
     return effect;
   }
 
-  /**
-   * (Required)
-   */
   public IAMPolicyStatement setEffect(String effect) {
     this.effect = effect;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public List<String> getResource() {
     return resource;
   }
 
-  /**
-   * (Required)
-   */
   public IAMPolicyStatement setResource(List<String> resource) {
     this.resource = resource;
     return this;

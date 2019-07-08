@@ -19,21 +19,12 @@ public class CloudwatchLogsEvent {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private CloudwatchLogsRawData awslogs;
 
-  /**
-   * (Required)
-   */
   public CloudwatchLogsRawData getAwslogs() {
     return awslogs;
   }
 
-  /**
-   * (Required)
-   */
   public CloudwatchLogsEvent setAwslogs(CloudwatchLogsRawData awslogs) {
     this.awslogs = awslogs;
     return this;

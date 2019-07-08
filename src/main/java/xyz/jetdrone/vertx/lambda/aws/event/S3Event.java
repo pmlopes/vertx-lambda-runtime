@@ -22,21 +22,12 @@ public class S3Event {
     return json;
   }
 
-  /**
-   * (Required)
-   */
-  private List<S3EventRecord> records = new ArrayList<S3EventRecord>();
+  private List<S3EventRecord> records = new ArrayList<>();
 
-  /**
-   * (Required)
-   */
   public List<S3EventRecord> getRecords() {
     return records;
   }
 
-  /**
-   * (Required)
-   */
   public S3Event setRecords(List<S3EventRecord> records) {
     this.records = records;
     return this;

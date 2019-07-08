@@ -1,5 +1,48 @@
 = Cheatsheets
 
+[[ALBTargetGroupRequest]]
+== ALBTargetGroupRequest
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[body]]`@body`|`String`|-
+|[[headers]]`@headers`|`String`|-
+|[[httpMethod]]`@httpMethod`|`String`|-
+|[[isBase64Encoded]]`@isBase64Encoded`|`Boolean`|-
+|[[path]]`@path`|`String`|-
+|[[queryStringParameters]]`@queryStringParameters`|`String`|-
+|[[requestContext]]`@requestContext`|`link:dataobjects.html#ALBTargetGroupRequestContext[ALBTargetGroupRequestContext]`|-
+|===
+
+[[ALBTargetGroupRequestContext]]
+== ALBTargetGroupRequestContext
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[elb]]`@elb`|`link:dataobjects.html#ELBContext[ELBContext]`|-
+|===
+
+[[ALBTargetGroupResponse]]
+== ALBTargetGroupResponse
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[body]]`@body`|`String`|-
+|[[headers]]`@headers`|`String`|-
+|[[isBase64Encoded]]`@isBase64Encoded`|`Boolean`|-
+|[[statusCode]]`@statusCode`|`Number (int)`|-
+|[[statusDescription]]`@statusDescription`|`String`|-
+|===
+
 [[APIGatewayCustomAuthorizerPolicy]]
 == APIGatewayCustomAuthorizerPolicy
 
@@ -8,12 +51,8 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[statement]]`@statement`|`Array of link:dataobjects.html#IAMPolicyStatement[IAMPolicyStatement]`|+++
-(Required)
-+++
-|[[version]]`@version`|`String`|+++
-(Required)
-+++
+|[[statement]]`@statement`|`Array of link:dataobjects.html#IAMPolicyStatement[IAMPolicyStatement]`|-
+|[[version]]`@version`|`String`|-
 |===
 
 [[APIGatewayCustomAuthorizerRequest]]
@@ -24,15 +63,9 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[authorizationToken]]`@authorizationToken`|`String`|+++
-(Required)
-+++
-|[[methodArn]]`@methodArn`|`String`|+++
-(Required)
-+++
-|[[type]]`@type`|`String`|+++
-(Required)
-+++
+|[[authorizationToken]]`@authorizationToken`|`String`|-
+|[[methodArn]]`@methodArn`|`String`|-
+|[[type]]`@type`|`String`|-
 |===
 
 [[APIGatewayCustomAuthorizerResponse]]
@@ -44,12 +77,8 @@
 |===
 ^|Name | Type ^| Description
 |[[context]]`@context`|`Json object`|-
-|[[policyDocument]]`@policyDocument`|`link:dataobjects.html#APIGatewayCustomAuthorizerPolicy[APIGatewayCustomAuthorizerPolicy]`|+++
-(Required)
-+++
-|[[principalId]]`@principalId`|`String`|+++
-(Required)
-+++
+|[[policyDocument]]`@policyDocument`|`link:dataobjects.html#APIGatewayCustomAuthorizerPolicy[APIGatewayCustomAuthorizerPolicy]`|-
+|[[principalId]]`@principalId`|`String`|-
 |[[usageIdentifierKey]]`@usageIdentifierKey`|`String`|-
 |===
 
@@ -61,34 +90,16 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[body]]`@body`|`String`|+++
-(Required)
-+++
-|[[headers]]`@headers`|`Json object`|+++
-(Required)
-+++
-|[[httpMethod]]`@httpMethod`|`String`|+++
-(Required)
-+++
+|[[body]]`@body`|`String`|-
+|[[headers]]`@headers`|`Json object`|-
+|[[httpMethod]]`@httpMethod`|`String`|-
 |[[isBase64Encoded]]`@isBase64Encoded`|`Boolean`|-
-|[[path]]`@path`|`String`|+++
-(Required)
-+++
-|[[pathParameters]]`@pathParameters`|`Json object`|+++
-(Required)
-+++
-|[[queryStringParameters]]`@queryStringParameters`|`Json object`|+++
-(Required)
-+++
-|[[requestContext]]`@requestContext`|`link:dataobjects.html#APIGatewayProxyRequestContext[APIGatewayProxyRequestContext]`|+++
-(Required)
-+++
-|[[resource]]`@resource`|`String`|+++
-(Required)
-+++
-|[[stageVariables]]`@stageVariables`|`Json object`|+++
-(Required)
-+++
+|[[path]]`@path`|`String`|-
+|[[pathParameters]]`@pathParameters`|`Json object`|-
+|[[queryStringParameters]]`@queryStringParameters`|`Json object`|-
+|[[requestContext]]`@requestContext`|`link:dataobjects.html#APIGatewayProxyRequestContext[APIGatewayProxyRequestContext]`|-
+|[[resource]]`@resource`|`String`|-
+|[[stageVariables]]`@stageVariables`|`Json object`|-
 |===
 
 [[APIGatewayProxyRequestContext]]
@@ -99,33 +110,15 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[accountId]]`@accountId`|`String`|+++
-(Required)
-+++
-|[[apiId]]`@apiId`|`String`|+++
-(Required)
-+++
-|[[authorizer]]`@authorizer`|`Json object`|+++
-(Required)
-+++
-|[[httpMethod]]`@httpMethod`|`String`|+++
-(Required)
-+++
-|[[identity]]`@identity`|`link:dataobjects.html#APIGatewayRequestIdentity[APIGatewayRequestIdentity]`|+++
-(Required)
-+++
-|[[requestId]]`@requestId`|`String`|+++
-(Required)
-+++
-|[[resourceId]]`@resourceId`|`String`|+++
-(Required)
-+++
-|[[resourcePath]]`@resourcePath`|`String`|+++
-(Required)
-+++
-|[[stage]]`@stage`|`String`|+++
-(Required)
-+++
+|[[accountId]]`@accountId`|`String`|-
+|[[apiId]]`@apiId`|`String`|-
+|[[authorizer]]`@authorizer`|`Json object`|-
+|[[httpMethod]]`@httpMethod`|`String`|-
+|[[identity]]`@identity`|`link:dataobjects.html#APIGatewayRequestIdentity[APIGatewayRequestIdentity]`|-
+|[[requestId]]`@requestId`|`String`|-
+|[[resourceId]]`@resourceId`|`String`|-
+|[[resourcePath]]`@resourcePath`|`String`|-
+|[[stage]]`@stage`|`String`|-
 |===
 
 [[APIGatewayProxyResponse]]
@@ -136,16 +129,10 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[body]]`@body`|`String`|+++
-(Required)
-+++
-|[[headers]]`@headers`|`Json object`|+++
-(Required)
-+++
+|[[body]]`@body`|`String`|-
+|[[headers]]`@headers`|`Json object`|-
 |[[isBase64Encoded]]`@isBase64Encoded`|`Boolean`|-
-|[[statusCode]]`@statusCode`|`Number (Integer)`|+++
-(Required)
-+++
+|[[statusCode]]`@statusCode`|`Number (Integer)`|-
 |===
 
 [[APIGatewayRequestIdentity]]
@@ -156,39 +143,17 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[accountId]]`@accountId`|`String`|+++
-(Required)
-+++
-|[[apiKey]]`@apiKey`|`String`|+++
-(Required)
-+++
-|[[caller]]`@caller`|`String`|+++
-(Required)
-+++
-|[[cognitoAuthenticationProvider]]`@cognitoAuthenticationProvider`|`String`|+++
-(Required)
-+++
-|[[cognitoAuthenticationType]]`@cognitoAuthenticationType`|`String`|+++
-(Required)
-+++
-|[[cognitoIdentityId]]`@cognitoIdentityId`|`String`|+++
-(Required)
-+++
-|[[cognitoIdentityPoolId]]`@cognitoIdentityPoolId`|`String`|+++
-(Required)
-+++
-|[[sourceIp]]`@sourceIp`|`String`|+++
-(Required)
-+++
-|[[user]]`@user`|`String`|+++
-(Required)
-+++
-|[[userAgent]]`@userAgent`|`String`|+++
-(Required)
-+++
-|[[userArn]]`@userArn`|`String`|+++
-(Required)
-+++
+|[[accountId]]`@accountId`|`String`|-
+|[[apiKey]]`@apiKey`|`String`|-
+|[[caller]]`@caller`|`String`|-
+|[[cognitoAuthenticationProvider]]`@cognitoAuthenticationProvider`|`String`|-
+|[[cognitoAuthenticationType]]`@cognitoAuthenticationType`|`String`|-
+|[[cognitoIdentityId]]`@cognitoIdentityId`|`String`|-
+|[[cognitoIdentityPoolId]]`@cognitoIdentityPoolId`|`String`|-
+|[[sourceIp]]`@sourceIp`|`String`|-
+|[[user]]`@user`|`String`|-
+|[[userAgent]]`@userAgent`|`String`|-
+|[[userArn]]`@userArn`|`String`|-
 |===
 
 [[Attachment]]
@@ -214,30 +179,14 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[account]]`@account`|`String`|+++
-(Required)
-+++
-|[[detail]]`@detail`|`Array of Number (Integer)`|+++
-(Required)
-+++
-|[[detailType]]`@detailType`|`String`|+++
-(Required)
-+++
-|[[id]]`@id`|`String`|+++
-(Required)
-+++
-|[[region]]`@region`|`String`|+++
-(Required)
-+++
-|[[resources]]`@resources`|`Array of String`|+++
-(Required)
-+++
-|[[source]]`@source`|`String`|+++
-(Required)
-+++
-|[[version]]`@version`|`String`|+++
-(Required)
-+++
+|[[account]]`@account`|`String`|-
+|[[detail]]`@detail`|`Array of Number (Integer)`|-
+|[[detailType]]`@detailType`|`String`|-
+|[[id]]`@id`|`String`|-
+|[[region]]`@region`|`String`|-
+|[[resources]]`@resources`|`Array of String`|-
+|[[source]]`@source`|`String`|-
+|[[version]]`@version`|`String`|-
 |===
 
 [[CloudwatchLogsEvent]]
@@ -248,9 +197,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[awslogs]]`@awslogs`|`link:dataobjects.html#CloudwatchLogsRawData[CloudwatchLogsRawData]`|+++
-(Required)
-+++
+|[[awslogs]]`@awslogs`|`link:dataobjects.html#CloudwatchLogsRawData[CloudwatchLogsRawData]`|-
 |===
 
 [[CloudwatchLogsRawData]]
@@ -261,9 +208,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[data]]`@data`|`String`|+++
-(Required)
-+++
+|[[data]]`@data`|`String`|-
 |===
 
 [[ConfigEvent]]
@@ -274,36 +219,27 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[accountId]]`@accountId`|`String`|+++
-(Required)
-+++
-|[[configRuleArn]]`@configRuleArn`|`String`|+++
-(Required)
-+++
-|[[configRuleId]]`@configRuleId`|`String`|+++
-(Required)
-+++
-|[[configRuleName]]`@configRuleName`|`String`|+++
-(Required)
-+++
-|[[eventLeftScope]]`@eventLeftScope`|`Boolean`|+++
-(Required)
-+++
-|[[executionRoleArn]]`@executionRoleArn`|`String`|+++
-(Required)
-+++
-|[[invokingEvent]]`@invokingEvent`|`String`|+++
-(Required)
-+++
-|[[resultToken]]`@resultToken`|`String`|+++
-(Required)
-+++
-|[[ruleParameters]]`@ruleParameters`|`String`|+++
-(Required)
-+++
-|[[version]]`@version`|`String`|+++
-(Required)
-+++
+|[[accountId]]`@accountId`|`String`|-
+|[[configRuleArn]]`@configRuleArn`|`String`|-
+|[[configRuleId]]`@configRuleId`|`String`|-
+|[[configRuleName]]`@configRuleName`|`String`|-
+|[[eventLeftScope]]`@eventLeftScope`|`Boolean`|-
+|[[executionRoleArn]]`@executionRoleArn`|`String`|-
+|[[invokingEvent]]`@invokingEvent`|`String`|-
+|[[resultToken]]`@resultToken`|`String`|-
+|[[ruleParameters]]`@ruleParameters`|`String`|-
+|[[version]]`@version`|`String`|-
+|===
+
+[[ELBContext]]
+== ELBContext
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[targetGroupArn]]`@targetGroupArn`|`String`|-
 |===
 
 [[IAMPolicyStatement]]
@@ -314,15 +250,9 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[action]]`@action`|`Array of String`|+++
-(Required)
-+++
-|[[effect]]`@effect`|`String`|+++
-(Required)
-+++
-|[[resource]]`@resource`|`Array of String`|+++
-(Required)
-+++
+|[[action]]`@action`|`Array of String`|-
+|[[effect]]`@effect`|`String`|-
+|[[resource]]`@resource`|`Array of String`|-
 |===
 
 [[IoTButtonEvent]]
@@ -333,15 +263,9 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[batteryVoltage]]`@batteryVoltage`|`String`|+++
-(Required)
-+++
-|[[clickType]]`@clickType`|`String`|+++
-(Required)
-+++
-|[[serialNumber]]`@serialNumber`|`String`|+++
-(Required)
-+++
+|[[batteryVoltage]]`@batteryVoltage`|`String`|-
+|[[clickType]]`@clickType`|`String`|-
+|[[serialNumber]]`@serialNumber`|`String`|-
 |===
 
 [[KinesisEvent]]
@@ -352,9 +276,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[records]]`@records`|`Array of link:dataobjects.html#KinesisEventRecord[KinesisEventRecord]`|+++
-(Required)
-+++
+|[[records]]`@records`|`Array of link:dataobjects.html#KinesisEventRecord[KinesisEventRecord]`|-
 |===
 
 [[KinesisEventRecord]]
@@ -365,30 +287,14 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[awsRegion]]`@awsRegion`|`String`|+++
-(Required)
-+++
-|[[eventID]]`@eventID`|`String`|+++
-(Required)
-+++
-|[[eventName]]`@eventName`|`String`|+++
-(Required)
-+++
-|[[eventSource]]`@eventSource`|`String`|+++
-(Required)
-+++
-|[[eventSourceARN]]`@eventSourceARN`|`String`|+++
-(Required)
-+++
-|[[eventVersion]]`@eventVersion`|`String`|+++
-(Required)
-+++
-|[[invokeIdentityArn]]`@invokeIdentityArn`|`String`|+++
-(Required)
-+++
-|[[kinesis]]`@kinesis`|`link:dataobjects.html#KinesisRecord[KinesisRecord]`|+++
-(Required)
-+++
+|[[awsRegion]]`@awsRegion`|`String`|-
+|[[eventID]]`@eventID`|`String`|-
+|[[eventName]]`@eventName`|`String`|-
+|[[eventSource]]`@eventSource`|`String`|-
+|[[eventSourceARN]]`@eventSourceARN`|`String`|-
+|[[eventVersion]]`@eventVersion`|`String`|-
+|[[invokeIdentityArn]]`@invokeIdentityArn`|`String`|-
+|[[kinesis]]`@kinesis`|`link:dataobjects.html#KinesisRecord[KinesisRecord]`|-
 |===
 
 [[KinesisFirehoseEvent]]
@@ -399,18 +305,10 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[deliveryStreamArn]]`@deliveryStreamArn`|`String`|+++
-(Required)
-+++
-|[[invocationId]]`@invocationId`|`String`|+++
-(Required)
-+++
-|[[records]]`@records`|`Array of link:dataobjects.html#KinesisFirehoseEventRecord[KinesisFirehoseEventRecord]`|+++
-(Required)
-+++
-|[[region]]`@region`|`String`|+++
-(Required)
-+++
+|[[deliveryStreamArn]]`@deliveryStreamArn`|`String`|-
+|[[invocationId]]`@invocationId`|`String`|-
+|[[records]]`@records`|`Array of link:dataobjects.html#KinesisFirehoseEventRecord[KinesisFirehoseEventRecord]`|-
+|[[region]]`@region`|`String`|-
 |===
 
 [[KinesisFirehoseEventRecord]]
@@ -421,15 +319,9 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[approximateArrivalTimestamp]]`@approximateArrivalTimestamp`|`link:dataobjects.html#MilliSecondsEpochTime[MilliSecondsEpochTime]`|+++
-(Required)
-+++
-|[[data]]`@data`|`Buffer`|+++
-(Required)
-+++
-|[[recordId]]`@recordId`|`String`|+++
-(Required)
-+++
+|[[approximateArrivalTimestamp]]`@approximateArrivalTimestamp`|`link:dataobjects.html#MilliSecondsEpochTime[MilliSecondsEpochTime]`|-
+|[[data]]`@data`|`Buffer`|-
+|[[recordId]]`@recordId`|`String`|-
 |===
 
 [[KinesisRecord]]
@@ -440,22 +332,12 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[approximateArrivalTimestamp]]`@approximateArrivalTimestamp`|`link:dataobjects.html#SecondsEpochTime[SecondsEpochTime]`|+++
-(Required)
-+++
-|[[data]]`@data`|`Buffer`|+++
-(Required)
-+++
+|[[approximateArrivalTimestamp]]`@approximateArrivalTimestamp`|`link:dataobjects.html#SecondsEpochTime[SecondsEpochTime]`|-
+|[[data]]`@data`|`Buffer`|-
 |[[encryptionType]]`@encryptionType`|`String`|-
-|[[kinesisSchemaVersion]]`@kinesisSchemaVersion`|`String`|+++
-(Required)
-+++
-|[[partitionKey]]`@partitionKey`|`String`|+++
-(Required)
-+++
-|[[sequenceNumber]]`@sequenceNumber`|`String`|+++
-(Required)
-+++
+|[[kinesisSchemaVersion]]`@kinesisSchemaVersion`|`String`|-
+|[[partitionKey]]`@partitionKey`|`String`|-
+|[[sequenceNumber]]`@sequenceNumber`|`String`|-
 |===
 
 [[LexBot]]
@@ -553,15 +435,9 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[arn]]`@arn`|`String`|+++
-(Required)
-+++
-|[[name]]`@name`|`String`|+++
-(Required)
-+++
-|[[ownerIdentity]]`@ownerIdentity`|`link:dataobjects.html#S3UserIdentity[S3UserIdentity]`|+++
-(Required)
-+++
+|[[arn]]`@arn`|`String`|-
+|[[name]]`@name`|`String`|-
+|[[ownerIdentity]]`@ownerIdentity`|`link:dataobjects.html#S3UserIdentity[S3UserIdentity]`|-
 |===
 
 [[S3Entity]]
@@ -572,18 +448,10 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[bucket]]`@bucket`|`link:dataobjects.html#S3Bucket[S3Bucket]`|+++
-(Required)
-+++
-|[[configurationId]]`@configurationId`|`String`|+++
-(Required)
-+++
-|[[object]]`@object`|`link:dataobjects.html#S3Object[S3Object]`|+++
-(Required)
-+++
-|[[s3SchemaVersion]]`@s3SchemaVersion`|`String`|+++
-(Required)
-+++
+|[[bucket]]`@bucket`|`link:dataobjects.html#S3Bucket[S3Bucket]`|-
+|[[configurationId]]`@configurationId`|`String`|-
+|[[object]]`@object`|`link:dataobjects.html#S3Object[S3Object]`|-
+|[[s3SchemaVersion]]`@s3SchemaVersion`|`String`|-
 |===
 
 [[S3Event]]
@@ -594,9 +462,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[records]]`@records`|`Array of link:dataobjects.html#S3EventRecord[S3EventRecord]`|+++
-(Required)
-+++
+|[[records]]`@records`|`Array of link:dataobjects.html#S3EventRecord[S3EventRecord]`|-
 |===
 
 [[S3EventRecord]]
@@ -607,30 +473,14 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[awsRegion]]`@awsRegion`|`String`|+++
-(Required)
-+++
-|[[eventName]]`@eventName`|`String`|+++
-(Required)
-+++
-|[[eventSource]]`@eventSource`|`String`|+++
-(Required)
-+++
-|[[eventVersion]]`@eventVersion`|`String`|+++
-(Required)
-+++
-|[[requestParameters]]`@requestParameters`|`link:dataobjects.html#S3RequestParameters[S3RequestParameters]`|+++
-(Required)
-+++
-|[[responseElements]]`@responseElements`|`Json object`|+++
-(Required)
-+++
-|[[s3]]`@s3`|`link:dataobjects.html#S3Entity[S3Entity]`|+++
-(Required)
-+++
-|[[userIdentity]]`@userIdentity`|`link:dataobjects.html#S3UserIdentity[S3UserIdentity]`|+++
-(Required)
-+++
+|[[awsRegion]]`@awsRegion`|`String`|-
+|[[eventName]]`@eventName`|`String`|-
+|[[eventSource]]`@eventSource`|`String`|-
+|[[eventVersion]]`@eventVersion`|`String`|-
+|[[requestParameters]]`@requestParameters`|`link:dataobjects.html#S3RequestParameters[S3RequestParameters]`|-
+|[[responseElements]]`@responseElements`|`Json object`|-
+|[[s3]]`@s3`|`link:dataobjects.html#S3Entity[S3Entity]`|-
+|[[userIdentity]]`@userIdentity`|`link:dataobjects.html#S3UserIdentity[S3UserIdentity]`|-
 |===
 
 [[S3Object]]
@@ -641,21 +491,11 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[key]]`@key`|`String`|+++
-(Required)
-+++
-|[[sequencer]]`@sequencer`|`String`|+++
-(Required)
-+++
-|[[size]]`@size`|`Number (Integer)`|+++
-(Required)
-+++
-|[[urlDecodedKey]]`@urlDecodedKey`|`String`|+++
-(Required)
-+++
-|[[versionId]]`@versionId`|`String`|+++
-(Required)
-+++
+|[[key]]`@key`|`String`|-
+|[[sequencer]]`@sequencer`|`String`|-
+|[[size]]`@size`|`Number (Integer)`|-
+|[[urlDecodedKey]]`@urlDecodedKey`|`String`|-
+|[[versionId]]`@versionId`|`String`|-
 |===
 
 [[S3RequestParameters]]
@@ -666,9 +506,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[sourceIPAddress]]`@sourceIPAddress`|`String`|+++
-(Required)
-+++
+|[[sourceIPAddress]]`@sourceIPAddress`|`String`|-
 |===
 
 [[S3UserIdentity]]
@@ -679,9 +517,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[principalId]]`@principalId`|`String`|+++
-(Required)
-+++
+|[[principalId]]`@principalId`|`String`|-
 |===
 
 [[SNSEntity]]
@@ -692,36 +528,16 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[message]]`@message`|`String`|+++
-(Required)
-+++
-|[[messageAttributes]]`@messageAttributes`|`Json object`|+++
-(Required)
-+++
-|[[messageId]]`@messageId`|`String`|+++
-(Required)
-+++
-|[[signature]]`@signature`|`String`|+++
-(Required)
-+++
-|[[signatureVersion]]`@signatureVersion`|`String`|+++
-(Required)
-+++
-|[[signingCertUrl]]`@signingCertUrl`|`String`|+++
-(Required)
-+++
-|[[subject]]`@subject`|`String`|+++
-(Required)
-+++
-|[[topicArn]]`@topicArn`|`String`|+++
-(Required)
-+++
-|[[type]]`@type`|`String`|+++
-(Required)
-+++
-|[[unsubscribeUrl]]`@unsubscribeUrl`|`String`|+++
-(Required)
-+++
+|[[message]]`@message`|`String`|-
+|[[messageAttributes]]`@messageAttributes`|`Json object`|-
+|[[messageId]]`@messageId`|`String`|-
+|[[signature]]`@signature`|`String`|-
+|[[signatureVersion]]`@signatureVersion`|`String`|-
+|[[signingCertUrl]]`@signingCertUrl`|`String`|-
+|[[subject]]`@subject`|`String`|-
+|[[topicArn]]`@topicArn`|`String`|-
+|[[type]]`@type`|`String`|-
+|[[unsubscribeUrl]]`@unsubscribeUrl`|`String`|-
 |===
 
 [[SNSEvent]]
@@ -732,9 +548,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[records]]`@records`|`Array of link:dataobjects.html#SNSEventRecord[SNSEventRecord]`|+++
-(Required)
-+++
+|[[records]]`@records`|`Array of link:dataobjects.html#SNSEventRecord[SNSEventRecord]`|-
 |===
 
 [[SNSEventRecord]]
@@ -745,18 +559,10 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[eventSource]]`@eventSource`|`String`|+++
-(Required)
-+++
-|[[eventSubscriptionArn]]`@eventSubscriptionArn`|`String`|+++
-(Required)
-+++
-|[[eventVersion]]`@eventVersion`|`String`|+++
-(Required)
-+++
-|[[sns]]`@sns`|`link:dataobjects.html#SNSEntity[SNSEntity]`|+++
-(Required)
-+++
+|[[eventSource]]`@eventSource`|`String`|-
+|[[eventSubscriptionArn]]`@eventSubscriptionArn`|`String`|-
+|[[eventVersion]]`@eventVersion`|`String`|-
+|[[sns]]`@sns`|`link:dataobjects.html#SNSEntity[SNSEntity]`|-
 |===
 
 [[SQSEvent]]
@@ -767,9 +573,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[records]]`@records`|`Array of link:dataobjects.html#SQSMessage[SQSMessage]`|+++
-(Required)
-+++
+|[[records]]`@records`|`Array of link:dataobjects.html#SQSMessage[SQSMessage]`|-
 |===
 
 [[SQSMessage]]
@@ -780,36 +584,16 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[attributes]]`@attributes`|`Json object`|+++
-(Required)
-+++
-|[[awsRegion]]`@awsRegion`|`String`|+++
-(Required)
-+++
-|[[body]]`@body`|`String`|+++
-(Required)
-+++
-|[[eventSource]]`@eventSource`|`String`|+++
-(Required)
-+++
-|[[eventSourceARN]]`@eventSourceARN`|`String`|+++
-(Required)
-+++
-|[[md5OfBody]]`@md5OfBody`|`String`|+++
-(Required)
-+++
-|[[md5OfMessageAttributes]]`@md5OfMessageAttributes`|`String`|+++
-(Required)
-+++
-|[[messageAttributes]]`@messageAttributes`|`Json object`|+++
-(Required)
-+++
-|[[messageId]]`@messageId`|`String`|+++
-(Required)
-+++
-|[[receiptHandle]]`@receiptHandle`|`String`|+++
-(Required)
-+++
+|[[attributes]]`@attributes`|`Json object`|-
+|[[awsRegion]]`@awsRegion`|`String`|-
+|[[body]]`@body`|`String`|-
+|[[eventSource]]`@eventSource`|`String`|-
+|[[eventSourceARN]]`@eventSourceARN`|`String`|-
+|[[md5OfBody]]`@md5OfBody`|`String`|-
+|[[md5OfMessageAttributes]]`@md5OfMessageAttributes`|`String`|-
+|[[messageAttributes]]`@messageAttributes`|`Json object`|-
+|[[messageId]]`@messageId`|`String`|-
+|[[receiptHandle]]`@receiptHandle`|`String`|-
 |===
 
 [[SecondsEpochTime]]
@@ -830,24 +614,12 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[date]]`@date`|`String`|+++
-(Required)
-+++
-|[[from]]`@from`|`Array of String`|+++
-(Required)
-+++
-|[[messageId]]`@messageId`|`String`|+++
-(Required)
-+++
-|[[returnPath]]`@returnPath`|`String`|+++
-(Required)
-+++
-|[[subject]]`@subject`|`String`|+++
-(Required)
-+++
-|[[to]]`@to`|`Array of String`|+++
-(Required)
-+++
+|[[date]]`@date`|`String`|-
+|[[from]]`@from`|`Array of String`|-
+|[[messageId]]`@messageId`|`String`|-
+|[[returnPath]]`@returnPath`|`String`|-
+|[[subject]]`@subject`|`String`|-
+|[[to]]`@to`|`Array of String`|-
 |===
 
 [[SimpleEmailEvent]]
@@ -858,9 +630,7 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[records]]`@records`|`Array of link:dataobjects.html#SimpleEmailRecord[SimpleEmailRecord]`|+++
-(Required)
-+++
+|[[records]]`@records`|`Array of link:dataobjects.html#SimpleEmailRecord[SimpleEmailRecord]`|-
 |===
 
 [[SimpleEmailHeader]]
@@ -871,12 +641,8 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[name]]`@name`|`String`|+++
-(Required)
-+++
-|[[value]]`@value`|`String`|+++
-(Required)
-+++
+|[[name]]`@name`|`String`|-
+|[[value]]`@value`|`String`|-
 |===
 
 [[SimpleEmailMessage]]
@@ -887,24 +653,12 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[commonHeaders]]`@commonHeaders`|`link:dataobjects.html#SimpleEmailCommonHeaders[SimpleEmailCommonHeaders]`|+++
-(Required)
-+++
-|[[destination]]`@destination`|`Array of String`|+++
-(Required)
-+++
-|[[headers]]`@headers`|`Array of link:dataobjects.html#SimpleEmailHeader[SimpleEmailHeader]`|+++
-(Required)
-+++
-|[[headersTruncated]]`@headersTruncated`|`Boolean`|+++
-(Required)
-+++
-|[[messageId]]`@messageId`|`String`|+++
-(Required)
-+++
-|[[source]]`@source`|`String`|+++
-(Required)
-+++
+|[[commonHeaders]]`@commonHeaders`|`link:dataobjects.html#SimpleEmailCommonHeaders[SimpleEmailCommonHeaders]`|-
+|[[destination]]`@destination`|`Array of String`|-
+|[[headers]]`@headers`|`Array of link:dataobjects.html#SimpleEmailHeader[SimpleEmailHeader]`|-
+|[[headersTruncated]]`@headersTruncated`|`Boolean`|-
+|[[messageId]]`@messageId`|`String`|-
+|[[source]]`@source`|`String`|-
 |===
 
 [[SimpleEmailReceipt]]
@@ -915,33 +669,15 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[action]]`@action`|`link:dataobjects.html#SimpleEmailReceiptAction[SimpleEmailReceiptAction]`|+++
-(Required)
-+++
-|[[dkimVerdict]]`@dkimVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|+++
-(Required)
-+++
-|[[dmarcPolicy]]`@dmarcPolicy`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|+++
-(Required)
-+++
-|[[dmarcVerdict]]`@dmarcVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|+++
-(Required)
-+++
-|[[processingTimeMillis]]`@processingTimeMillis`|`Number (Integer)`|+++
-(Required)
-+++
-|[[recipients]]`@recipients`|`Array of String`|+++
-(Required)
-+++
-|[[spamVerdict]]`@spamVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|+++
-(Required)
-+++
-|[[spfVerdict]]`@spfVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|+++
-(Required)
-+++
-|[[virusVerdict]]`@virusVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|+++
-(Required)
-+++
+|[[action]]`@action`|`link:dataobjects.html#SimpleEmailReceiptAction[SimpleEmailReceiptAction]`|-
+|[[dkimVerdict]]`@dkimVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|-
+|[[dmarcPolicy]]`@dmarcPolicy`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|-
+|[[dmarcVerdict]]`@dmarcVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|-
+|[[processingTimeMillis]]`@processingTimeMillis`|`Number (Integer)`|-
+|[[recipients]]`@recipients`|`Array of String`|-
+|[[spamVerdict]]`@spamVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|-
+|[[spfVerdict]]`@spfVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|-
+|[[virusVerdict]]`@virusVerdict`|`link:dataobjects.html#SimpleEmailVerdict[SimpleEmailVerdict]`|-
 |===
 
 [[SimpleEmailReceiptAction]]
@@ -952,15 +688,9 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[functionArn]]`@functionArn`|`String`|+++
-(Required)
-+++
-|[[invocationType]]`@invocationType`|`String`|+++
-(Required)
-+++
-|[[type]]`@type`|`String`|+++
-(Required)
-+++
+|[[functionArn]]`@functionArn`|`String`|-
+|[[invocationType]]`@invocationType`|`String`|-
+|[[type]]`@type`|`String`|-
 |===
 
 [[SimpleEmailRecord]]
@@ -971,15 +701,9 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[eventSource]]`@eventSource`|`String`|+++
-(Required)
-+++
-|[[eventVersion]]`@eventVersion`|`String`|+++
-(Required)
-+++
-|[[ses]]`@ses`|`link:dataobjects.html#SimpleEmailService[SimpleEmailService]`|+++
-(Required)
-+++
+|[[eventSource]]`@eventSource`|`String`|-
+|[[eventVersion]]`@eventVersion`|`String`|-
+|[[ses]]`@ses`|`link:dataobjects.html#SimpleEmailService[SimpleEmailService]`|-
 |===
 
 [[SimpleEmailService]]
@@ -990,12 +714,8 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[mail]]`@mail`|`link:dataobjects.html#SimpleEmailMessage[SimpleEmailMessage]`|+++
-(Required)
-+++
-|[[receipt]]`@receipt`|`link:dataobjects.html#SimpleEmailReceipt[SimpleEmailReceipt]`|+++
-(Required)
-+++
+|[[mail]]`@mail`|`link:dataobjects.html#SimpleEmailMessage[SimpleEmailMessage]`|-
+|[[receipt]]`@receipt`|`link:dataobjects.html#SimpleEmailReceipt[SimpleEmailReceipt]`|-
 |===
 
 [[SimpleEmailVerdict]]
@@ -1006,8 +726,6 @@
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[status]]`@status`|`String`|+++
-(Required)
-+++
+|[[status]]`@status`|`String`|-
 |===
 

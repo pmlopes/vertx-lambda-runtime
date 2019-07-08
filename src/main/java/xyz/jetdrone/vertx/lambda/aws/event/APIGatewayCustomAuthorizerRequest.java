@@ -20,59 +20,32 @@ public class APIGatewayCustomAuthorizerRequest {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String authorizationToken;
-  /**
-   * (Required)
-   */
   private String methodArn;
-  /**
-   * (Required)
-   */
   private String type;
 
-  /**
-   * (Required)
-   */
   public String getAuthorizationToken() {
     return authorizationToken;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerRequest setAuthorizationToken(String authorizationToken) {
     this.authorizationToken = authorizationToken;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getMethodArn() {
     return methodArn;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerRequest setMethodArn(String methodArn) {
     this.methodArn = methodArn;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getType() {
     return type;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerRequest setType(String type) {
     this.type = type;
     return this;

@@ -22,21 +22,12 @@ public class KinesisEvent {
     return json;
   }
 
-  /**
-   * (Required)
-   */
-  private List<KinesisEventRecord> records = new ArrayList<KinesisEventRecord>();
+  private List<KinesisEventRecord> records = new ArrayList<>();
 
-  /**
-   * (Required)
-   */
   public List<KinesisEventRecord> getRecords() {
     return records;
   }
 
-  /**
-   * (Required)
-   */
   public KinesisEvent setRecords(List<KinesisEventRecord> records) {
     this.records = records;
     return this;

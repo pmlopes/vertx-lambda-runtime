@@ -20,59 +20,32 @@ public class KinesisFirehoseEventRecord {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private MilliSecondsEpochTime approximateArrivalTimestamp;
-  /**
-   * (Required)
-   */
   private Buffer data;
-  /**
-   * (Required)
-   */
   private String recordId;
 
-  /**
-   * (Required)
-   */
   public MilliSecondsEpochTime getApproximateArrivalTimestamp() {
     return approximateArrivalTimestamp;
   }
 
-  /**
-   * (Required)
-   */
   public KinesisFirehoseEventRecord setApproximateArrivalTimestamp(MilliSecondsEpochTime approximateArrivalTimestamp) {
     this.approximateArrivalTimestamp = approximateArrivalTimestamp;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public Buffer getData() {
     return data;
   }
 
-  /**
-   * (Required)
-   */
   public KinesisFirehoseEventRecord setData(Buffer data) {
     this.data = data;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getRecordId() {
     return recordId;
   }
 
-  /**
-   * (Required)
-   */
   public KinesisFirehoseEventRecord setRecordId(String recordId) {
     this.recordId = recordId;
     return this;

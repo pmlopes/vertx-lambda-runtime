@@ -23,7 +23,7 @@ public class LexResponseCard {
   }
 
   private String contentType;
-  private List<Attachment> genericAttachments = new ArrayList<Attachment>();
+  private List<Attachment> genericAttachments = new ArrayList<>();
   private Integer version;
 
   public String getContentType() {

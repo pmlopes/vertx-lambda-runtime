@@ -20,21 +20,12 @@ public class SimpleEmailVerdict {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String status;
 
-  /**
-   * (Required)
-   */
   public String getStatus() {
     return status;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailVerdict setStatus(String status) {
     this.status = status;
     return this;

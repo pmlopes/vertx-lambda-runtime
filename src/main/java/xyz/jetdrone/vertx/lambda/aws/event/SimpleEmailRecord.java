@@ -20,59 +20,32 @@ public class SimpleEmailRecord {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String eventSource;
-  /**
-   * (Required)
-   */
   private String eventVersion;
-  /**
-   * (Required)
-   */
   private SimpleEmailService ses;
 
-  /**
-   * (Required)
-   */
   public String getEventSource() {
     return eventSource;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailRecord setEventSource(String eventSource) {
     this.eventSource = eventSource;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getEventVersion() {
     return eventVersion;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailRecord setEventVersion(String eventVersion) {
     this.eventVersion = eventVersion;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailService getSes() {
     return ses;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailRecord setSes(SimpleEmailService ses) {
     this.ses = ses;
     return this;
