@@ -20,78 +20,42 @@ public class S3Entity {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private S3Bucket bucket;
-  /**
-   * (Required)
-   */
   private String configurationId;
-  /**
-   * (Required)
-   */
   private S3Object object;
-  /**
-   * (Required)
-   */
   private String s3SchemaVersion;
 
-  /**
-   * (Required)
-   */
   public S3Bucket getBucket() {
     return bucket;
   }
 
-  /**
-   * (Required)
-   */
   public S3Entity setBucket(S3Bucket bucket) {
     this.bucket = bucket;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getConfigurationId() {
     return configurationId;
   }
 
-  /**
-   * (Required)
-   */
   public S3Entity setConfigurationId(String configurationId) {
     this.configurationId = configurationId;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public S3Object getObject() {
     return object;
   }
 
-  /**
-   * (Required)
-   */
   public S3Entity setObject(S3Object object) {
     this.object = object;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getS3SchemaVersion() {
     return s3SchemaVersion;
   }
 
-  /**
-   * (Required)
-   */
   public S3Entity setS3SchemaVersion(String s3SchemaVersion) {
     this.s3SchemaVersion = s3SchemaVersion;
     return this;

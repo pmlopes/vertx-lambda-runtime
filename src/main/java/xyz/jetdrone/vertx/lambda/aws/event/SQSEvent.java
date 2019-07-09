@@ -22,21 +22,12 @@ public class SQSEvent {
     return json;
   }
 
-  /**
-   * (Required)
-   */
-  private List<SQSMessage> records = new ArrayList<SQSMessage>();
+  private List<SQSMessage> records = new ArrayList<>();
 
-  /**
-   * (Required)
-   */
   public List<SQSMessage> getRecords() {
     return records;
   }
 
-  /**
-   * (Required)
-   */
   public SQSEvent setRecords(List<SQSMessage> records) {
     this.records = records;
     return this;

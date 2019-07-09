@@ -22,40 +22,22 @@ public class APIGatewayCustomAuthorizerPolicy {
     return json;
   }
 
-  /**
-   * (Required)
-   */
-  private List<IAMPolicyStatement> statement = new ArrayList<IAMPolicyStatement>();
-  /**
-   * (Required)
-   */
+  private List<IAMPolicyStatement> statement = new ArrayList<>();
   private String version;
 
-  /**
-   * (Required)
-   */
   public List<IAMPolicyStatement> getStatement() {
     return statement;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerPolicy setStatement(List<IAMPolicyStatement> statement) {
     this.statement = statement;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getVersion() {
     return version;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerPolicy setVersion(String version) {
     this.version = version;
     return this;

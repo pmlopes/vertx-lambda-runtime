@@ -19,45 +19,24 @@ public class APIGatewayProxyResponse {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String body;
-  /**
-   * (Required)
-   */
   private JsonObject headers;
   private Boolean isBase64Encoded;
-  /**
-   * (Required)
-   */
   private Integer statusCode;
 
-  /**
-   * (Required)
-   */
   public String getBody() {
     return body;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayProxyResponse setBody(String body) {
     this.body = body;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public JsonObject getHeaders() {
     return headers;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayProxyResponse setHeaders(JsonObject headers) {
     this.headers = headers;
     return this;
@@ -72,16 +51,10 @@ public class APIGatewayProxyResponse {
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public Integer getStatusCode() {
     return statusCode;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayProxyResponse setStatusCode(Integer statusCode) {
     this.statusCode = statusCode;
     return this;

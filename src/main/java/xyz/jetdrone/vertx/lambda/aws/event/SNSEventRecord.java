@@ -20,78 +20,42 @@ public class SNSEventRecord {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String eventSource;
-  /**
-   * (Required)
-   */
   private String eventSubscriptionArn;
-  /**
-   * (Required)
-   */
   private String eventVersion;
-  /**
-   * (Required)
-   */
   private SNSEntity sns;
 
-  /**
-   * (Required)
-   */
   public String getEventSource() {
     return eventSource;
   }
 
-  /**
-   * (Required)
-   */
   public SNSEventRecord setEventSource(String eventSource) {
     this.eventSource = eventSource;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getEventSubscriptionArn() {
     return eventSubscriptionArn;
   }
 
-  /**
-   * (Required)
-   */
   public SNSEventRecord setEventSubscriptionArn(String eventSubscriptionArn) {
     this.eventSubscriptionArn = eventSubscriptionArn;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getEventVersion() {
     return eventVersion;
   }
 
-  /**
-   * (Required)
-   */
   public SNSEventRecord setEventVersion(String eventVersion) {
     this.eventVersion = eventVersion;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public SNSEntity getSns() {
     return sns;
   }
 
-  /**
-   * (Required)
-   */
   public SNSEventRecord setSns(SNSEntity sns) {
     this.sns = sns;
     return this;

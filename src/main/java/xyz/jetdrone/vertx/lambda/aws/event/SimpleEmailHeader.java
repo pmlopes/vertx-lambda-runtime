@@ -20,40 +20,22 @@ public class SimpleEmailHeader {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String name;
-  /**
-   * (Required)
-   */
   private String value;
 
-  /**
-   * (Required)
-   */
   public String getName() {
     return name;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailHeader setName(String name) {
     this.name = name;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getValue() {
     return value;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailHeader setValue(String value) {
     this.value = value;
     return this;

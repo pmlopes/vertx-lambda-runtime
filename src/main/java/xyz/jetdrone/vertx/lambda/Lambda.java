@@ -49,19 +49,6 @@ import io.vertx.core.json.JsonObject;
  */
 @FunctionalInterface
 public interface Lambda<T> extends Handler<Message<T>> {
-
-  /**
-   * Function address to be used when referring on the event bus.
-   *
-   * By default the eventbus address is the function FQCN. However if an alias is provided then that value will be used
-   * instead.
-   *
-   * @return function address
-   */
-  default String alias() {
-    return null;
-  }
-
   /**
    * Default initialization. It can be used if a function needs to access vertx or the eventbus.
    *

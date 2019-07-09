@@ -20,21 +20,12 @@ public class S3RequestParameters {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String sourceIPAddress;
 
-  /**
-   * (Required)
-   */
   public String getSourceIPAddress() {
     return sourceIPAddress;
   }
 
-  /**
-   * (Required)
-   */
   public S3RequestParameters setSourceIPAddress(String sourceIPAddress) {
     this.sourceIPAddress = sourceIPAddress;
     return this;

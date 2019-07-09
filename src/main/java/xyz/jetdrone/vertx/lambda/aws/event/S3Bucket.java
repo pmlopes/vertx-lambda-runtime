@@ -20,59 +20,32 @@ public class S3Bucket {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String arn;
-  /**
-   * (Required)
-   */
   private String name;
-  /**
-   * (Required)
-   */
   private S3UserIdentity ownerIdentity;
 
-  /**
-   * (Required)
-   */
   public String getArn() {
     return arn;
   }
 
-  /**
-   * (Required)
-   */
   public S3Bucket setArn(String arn) {
     this.arn = arn;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getName() {
     return name;
   }
 
-  /**
-   * (Required)
-   */
   public S3Bucket setName(String name) {
     this.name = name;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public S3UserIdentity getOwnerIdentity() {
     return ownerIdentity;
   }
 
-  /**
-   * (Required)
-   */
   public S3Bucket setOwnerIdentity(S3UserIdentity ownerIdentity) {
     this.ownerIdentity = ownerIdentity;
     return this;

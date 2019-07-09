@@ -84,14 +84,13 @@ public final class Bootstrap extends AbstractVerticle {
     final JsonObject config = context.config();
     final EventBus eb = vertx.eventBus();
 
+    // Get the default handler class and method name from the Lambda Configuration in the format of <fqcn>
+    final String defaultFn = getenv("_HANDLER");
+
     // register all lambda's into the eventbus
     for (Lambda fn : ServiceLoader.load(Lambda.class)) {
       fn.init(vertx);
-      String address = fn.alias();
-      if (address == null) {
-        address = "/" + fn.getClass().getName().replace('.', '/');
-      }
-      eb.localConsumer(address, fn);
+      eb.localConsumer("/" + fn.getClass().getName().replace('.', '/'), fn);
     }
 
     // create an http server
@@ -113,8 +112,9 @@ public final class Bootstrap extends AbstractVerticle {
             event = body;
           }
 
+          final String path = request.path();
           // Invoke Handler Method
-          eb.send(request.path(), event, new DeliveryOptions().setHeaders(request.headers()), msg -> {
+          eb.send("/".equals(path) ? defaultFn : path, event, new DeliveryOptions().setHeaders(request.headers()), msg -> {
             if (msg.failed()) {
               fail(request, msg.cause());
             } else {

@@ -21,13 +21,7 @@ public class APIGatewayCustomAuthorizerResponse {
   }
 
   private JsonObject context;
-  /**
-   * (Required)
-   */
   private APIGatewayCustomAuthorizerPolicy policyDocument;
-  /**
-   * (Required)
-   */
   private String principalId;
   private String usageIdentifierKey;
 
@@ -40,31 +34,19 @@ public class APIGatewayCustomAuthorizerResponse {
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerPolicy getPolicyDocument() {
     return policyDocument;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerResponse setPolicyDocument(APIGatewayCustomAuthorizerPolicy policyDocument) {
     this.policyDocument = policyDocument;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public String getPrincipalId() {
     return principalId;
   }
 
-  /**
-   * (Required)
-   */
   public APIGatewayCustomAuthorizerResponse setPrincipalId(String principalId) {
     this.principalId = principalId;
     return this;

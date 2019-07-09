@@ -13,6 +13,7 @@
  *
  *  You may elect to redistribute this code under either of these licenses.
  */
+package xyz.jetdrone.vertx.lambda.graalvm;
 
 /// TODO: remove me when netty 4.1.36 is the default on vertx-core
 

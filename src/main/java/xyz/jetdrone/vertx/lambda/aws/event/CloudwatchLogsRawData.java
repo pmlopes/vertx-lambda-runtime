@@ -19,21 +19,12 @@ public class CloudwatchLogsRawData {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String data;
 
-  /**
-   * (Required)
-   */
   public String getData() {
     return data;
   }
 
-  /**
-   * (Required)
-   */
   public CloudwatchLogsRawData setData(String data) {
     this.data = data;
     return this;

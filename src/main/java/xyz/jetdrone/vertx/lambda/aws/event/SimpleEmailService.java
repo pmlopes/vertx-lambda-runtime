@@ -20,40 +20,22 @@ public class SimpleEmailService {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private SimpleEmailMessage mail;
-  /**
-   * (Required)
-   */
   private SimpleEmailReceipt receipt;
 
-  /**
-   * (Required)
-   */
   public SimpleEmailMessage getMail() {
     return mail;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailService setMail(SimpleEmailMessage mail) {
     this.mail = mail;
     return this;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailReceipt getReceipt() {
     return receipt;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailService setReceipt(SimpleEmailReceipt receipt) {
     this.receipt = receipt;
     return this;

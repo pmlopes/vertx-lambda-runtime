@@ -22,21 +22,12 @@ public class SimpleEmailEvent {
     return json;
   }
 
-  /**
-   * (Required)
-   */
-  private List<SimpleEmailRecord> records = new ArrayList<SimpleEmailRecord>();
+  private List<SimpleEmailRecord> records = new ArrayList<>();
 
-  /**
-   * (Required)
-   */
   public List<SimpleEmailRecord> getRecords() {
     return records;
   }
 
-  /**
-   * (Required)
-   */
   public SimpleEmailEvent setRecords(List<SimpleEmailRecord> records) {
     this.records = records;
     return this;

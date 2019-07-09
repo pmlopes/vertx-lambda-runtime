@@ -20,21 +20,12 @@ public class S3UserIdentity {
     return json;
   }
 
-  /**
-   * (Required)
-   */
   private String principalId;
 
-  /**
-   * (Required)
-   */
   public String getPrincipalId() {
     return principalId;
   }
 
-  /**
-   * (Required)
-   */
   public S3UserIdentity setPrincipalId(String principalId) {
     this.principalId = principalId;
     return this;
