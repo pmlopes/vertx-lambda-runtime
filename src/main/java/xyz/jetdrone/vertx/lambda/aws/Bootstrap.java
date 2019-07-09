@@ -50,13 +50,31 @@ public final class Bootstrap extends AbstractVerticle {
   private static final String LAMBDA_INIT_ERROR_TEMPLATE = "/{0}/runtime/init/error";
   private static final String LAMBDA_ERROR_TEMPLATE = "/{0}/runtime/invocation/{1}/error";
 
+  // default vertx options
+  private static final VertxOptions VERTX_OPTIONS = new VertxOptions().setEventLoopPoolSize(1);
+  // preload the service loader
+  private static final ServiceLoader<Lambda> SERVICE_LOADER = ServiceLoader.load(Lambda.class);
+
+  static {
+    System.setProperty("vertx.disableMetrics", "true");
+    System.setProperty("vertx.disableH2c", "true");
+    System.setProperty("vertx.disableWebsockets", "true");
+    System.setProperty("vertx.flashPolicyHandler", "true");
+    System.setProperty("vertx.disableTCCL", "true");
+  }
+
   public static void main(String[] args) {
     try {
-      final VertxOptions vertxOptions = new VertxOptions().setEventLoopPoolSize(1);
       final JsonObject config = new JsonObject();
       final DeploymentOptions deploymentOptions = new DeploymentOptions().setConfig(config);
 
       String runtimeApi = getenv("AWS_LAMBDA_RUNTIME_API");
+
+      if (runtimeApi == null) {
+        System.err.println("ERR: missing ENV_VAR [AWS_LAMBDA_RUNTIME_API]");
+        // the whole startup failed
+        System.exit(1);
+      }
 
       int sep = runtimeApi.indexOf(':');
       if (sep != -1) {
@@ -67,7 +85,8 @@ public final class Bootstrap extends AbstractVerticle {
       }
       config.put("runtimeUrl", MessageFormat.format(LAMBDA_RUNTIME_TEMPLATE, LAMBDA_VERSION_DATE));
 
-      Vertx.vertx(vertxOptions).deployVerticle(new Bootstrap(), deploymentOptions, deploy -> {
+      // set the eventloop to 1 as we're a single process running a single task
+      Vertx.vertx(VERTX_OPTIONS).deployVerticle(new Bootstrap(), deploymentOptions, deploy -> {
         if (deploy.failed()) {
           System.err.println(deploy.cause().getMessage());
           // the whole startup failed
@@ -89,15 +108,9 @@ public final class Bootstrap extends AbstractVerticle {
     final EventBus eb = vertx.eventBus();
 
     // register all lambda's into the eventbus
-    for (Lambda fn : ServiceLoader.load(Lambda.class)) {
+    for (Lambda fn : SERVICE_LOADER) {
       fn.init(vertx);
-      String address = fn.alias();
-
-      if (address == null) {
-        address = fn.getClass().getName();
-      }
-
-      eb.localConsumer(address, fn);
+      eb.localConsumer(fn.getClass().getName(), fn);
     }
 
     // create an WebClient
@@ -110,7 +123,7 @@ public final class Bootstrap extends AbstractVerticle {
 
     if (fn == null) {
       // Not much else to do handler can't be found.
-      fail(MessageFormat.format(LAMBDA_INIT_ERROR_TEMPLATE, LAMBDA_VERSION_DATE), "Could not find handler method [" + fn + "]");
+      fail(MessageFormat.format(LAMBDA_INIT_ERROR_TEMPLATE, LAMBDA_VERSION_DATE), "Could not find handler [" + fn + "]");
     } else {
       processEvents();
     }

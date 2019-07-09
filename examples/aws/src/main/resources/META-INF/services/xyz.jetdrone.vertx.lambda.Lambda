@@ -1,0 +1,3 @@
+# List all available Lambdas here
+com.example.aws.lambdas.ALBLambda
+com.example.aws.lambdas.APIGWLambda
