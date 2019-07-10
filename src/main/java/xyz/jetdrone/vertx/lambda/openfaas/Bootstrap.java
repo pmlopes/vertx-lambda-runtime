@@ -167,7 +167,7 @@ public final class Bootstrap extends AbstractVerticle {
         request.handler(handler);
         request.endHandler(v -> handler.end());
       })
-      .listen(config.getInteger("port", 8080), listen -> {
+      .listen(config.getInteger("port", 8000), listen -> {
         if (listen.failed()) {
           listen.cause().printStackTrace();
           System.exit(1);
