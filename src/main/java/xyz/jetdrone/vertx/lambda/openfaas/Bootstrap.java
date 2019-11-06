@@ -66,10 +66,17 @@ public final class Bootstrap extends AbstractVerticle {
         config.put("port", Integer.parseInt(getenv(PORT_ENV_VAR), 10));
       }
 
-      Vertx.vertx(vertxOptions).deployVerticle(new Bootstrap(), deploymentOptions, deploy -> {
+      final Vertx vertx = Vertx.vertx(vertxOptions);
+
+      vertx.deployVerticle(new Bootstrap(), deploymentOptions, deploy -> {
         if (deploy.failed()) {
           System.err.println(deploy.cause().getMessage());
           // the whole startup failed
+          try {
+            vertx.close();
+          } catch (Throwable t) {
+            t.printStackTrace();
+          }
           System.exit(1);
         }
       });
@@ -167,9 +174,14 @@ public final class Bootstrap extends AbstractVerticle {
         request.handler(handler);
         request.endHandler(v -> handler.end());
       })
-      .listen(config.getInteger("port", 8080), listen -> {
+      .listen(config.getInteger("port", 8000), listen -> {
         if (listen.failed()) {
           listen.cause().printStackTrace();
+          try {
+            vertx.close();
+          } catch (Throwable t) {
+            t.printStackTrace();
+          }
           System.exit(1);
         }
       });
@@ -362,6 +374,11 @@ public final class Bootstrap extends AbstractVerticle {
     } catch (IOException e) {
       e.printStackTrace();
       // terminate the process
+      try {
+        vertx.close();
+      } catch (Throwable t) {
+        t.printStackTrace();
+      }
       System.exit(1);
     }
   }

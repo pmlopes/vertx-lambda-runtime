@@ -35,7 +35,6 @@ import static java.lang.System.getenv;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.text.MessageFormat;
 import java.util.ServiceLoader;
 
 /**
@@ -45,13 +44,14 @@ public final class Bootstrap extends AbstractVerticle {
 
   private static final String LAMBDA_VERSION_DATE = "2018-06-01";
 
-  private static final String LAMBDA_RUNTIME_TEMPLATE = "/{0}/runtime/invocation/next";
-  private static final String LAMBDA_INVOCATION_TEMPLATE = "/{0}/runtime/invocation/{1}/response";
-  private static final String LAMBDA_INIT_ERROR_TEMPLATE = "/{0}/runtime/init/error";
-  private static final String LAMBDA_ERROR_TEMPLATE = "/{0}/runtime/invocation/{1}/error";
+  private static final String LAMBDA_INIT_ERROR = "/" + LAMBDA_VERSION_DATE + "/runtime/init/error";
+  private static final String LAMBDA_INVOCATION = "/" + LAMBDA_VERSION_DATE + "/runtime/invocation/";
 
-  // default vertx options
-  private static final VertxOptions VERTX_OPTIONS = new VertxOptions().setEventLoopPoolSize(1);
+  private static final String LAMBDA_INVOCATION_NEXT = LAMBDA_INVOCATION + "next";
+
+  private static final String RESPONSE = "/response";
+  private static final String ERROR = "/error";
+
   // preload the service loader
   private static final ServiceLoader<Lambda> SERVICE_LOADER = ServiceLoader.load(Lambda.class);
 
@@ -60,51 +60,64 @@ public final class Bootstrap extends AbstractVerticle {
     System.setProperty("vertx.disableH2c", "true");
     System.setProperty("vertx.disableWebsockets", "true");
     System.setProperty("vertx.flashPolicyHandler", "true");
-    System.setProperty("vertx.disableTCCL", "true");
+//    System.setProperty("vertx.disableTCCL", "true");
   }
 
   public static void main(String[] args) {
+    // default vertx instance and options
+    final Vertx vertx = Vertx.vertx(new VertxOptions().setEventLoopPoolSize(1));
     try {
-      final JsonObject config = new JsonObject();
-      final DeploymentOptions deploymentOptions = new DeploymentOptions().setConfig(config);
-
-      String runtimeApi = getenv("AWS_LAMBDA_RUNTIME_API");
-
-      if (runtimeApi == null) {
-        System.err.println("ERR: missing ENV_VAR [AWS_LAMBDA_RUNTIME_API]");
-        // the whole startup failed
-        System.exit(1);
-      }
-
-      int sep = runtimeApi.indexOf(':');
-      if (sep != -1) {
-        config.put("host", runtimeApi.substring(0, sep));
-        config.put("port", Integer.parseInt(runtimeApi.substring(sep + 1)));
-      } else {
-        config.put("host", runtimeApi);
-      }
-      config.put("runtimeUrl", MessageFormat.format(LAMBDA_RUNTIME_TEMPLATE, LAMBDA_VERSION_DATE));
-
-      // set the eventloop to 1 as we're a single process running a single task
-      Vertx.vertx(VERTX_OPTIONS).deployVerticle(new Bootstrap(), deploymentOptions, deploy -> {
-        if (deploy.failed()) {
-          System.err.println(deploy.cause().getMessage());
-          // the whole startup failed
-          System.exit(1);
-        }
-      });
+      main(vertx);
     } catch (RuntimeException e) {
       e.printStackTrace();
+      vertx.close();
       System.exit(1);
     }
   }
 
+  public static void main(Vertx vertx) {
+    String runtimeApi = getenv("AWS_LAMBDA_RUNTIME_API");
+    String host = runtimeApi;
+    int port = 80;
+
+    if (runtimeApi == null) {
+      throw new IllegalStateException("Missing ENV_VAR [AWS_LAMBDA_RUNTIME_API]");
+    }
+
+    int sep = runtimeApi.indexOf(':');
+    if (sep != -1) {
+      host = runtimeApi.substring(0, sep);
+      port = Integer.parseInt(runtimeApi.substring(sep + 1));
+    }
+
+    // set the eventloop to 1 as we're a single process running a single task
+    vertx.deployVerticle(new Bootstrap(host, port), deploy -> {
+      if (deploy.failed()) {
+        System.err.println(deploy.cause().getMessage());
+        // the whole startup failed
+        try {
+          vertx.close();
+        } catch (Throwable t) {
+          t.printStackTrace();
+        }
+        System.exit(1);
+      }
+    });
+  }
+
+  private final String host;
+  private final int port;
+
   private WebClient client;
   private String fn;
 
+  private Bootstrap(String host, int port) {
+    this.host = host;
+    this.port = port;
+  }
+
   @Override
   public void start() {
-    final JsonObject config = context.config();
     final EventBus eb = vertx.eventBus();
 
     // register all lambda's into the eventbus
@@ -115,15 +128,15 @@ public final class Bootstrap extends AbstractVerticle {
 
     // create an WebClient
     this.client = WebClient.create(vertx, new WebClientOptions()
-      .setDefaultPort(config.getInteger("port", 80))
-      .setDefaultHost(config.getString("host")));
+      .setDefaultPort(port)
+      .setDefaultHost(host));
 
     // Get the handler class and method name from the Lambda Configuration in the format of <fqcn>
     fn = getenv("_HANDLER");
 
     if (fn == null) {
       // Not much else to do handler can't be found.
-      fail(MessageFormat.format(LAMBDA_INIT_ERROR_TEMPLATE, LAMBDA_VERSION_DATE), "Could not find handler [" + fn + "]");
+      fail(LAMBDA_INIT_ERROR, "Could not find handler [" + fn + "]");
     } else {
       processEvents();
     }
@@ -131,9 +144,8 @@ public final class Bootstrap extends AbstractVerticle {
 
   private void processEvents() {
     final EventBus eb = vertx.eventBus();
-    final JsonObject config = context.config();
 
-    client.get(config.getString("runtimeUrl")).send(getAbs -> {
+    client.get(LAMBDA_INVOCATION_NEXT).send(getAbs -> {
       if (getAbs.succeeded()) {
         HttpResponse<Buffer> response = getAbs.result();
 
@@ -141,10 +153,10 @@ public final class Bootstrap extends AbstractVerticle {
           case 200:
             break;
           case 404:
-            System.exit(0);
+            exit(0);
           default:
             System.err.println("ERR: HTTP status code <" + response.statusCode() + ">");
-            System.exit(1);
+            exit(1);
         }
 
         String requestId = response.getHeader(Headers.LAMBDA_RUNTIME_AWS_REQUEST_ID);
@@ -155,7 +167,7 @@ public final class Bootstrap extends AbstractVerticle {
           try {
             event = new JsonObject(response.body());
           } catch (DecodeException e) {
-            fail(MessageFormat.format(LAMBDA_ERROR_TEMPLATE, LAMBDA_VERSION_DATE, requestId), e);
+            fail(LAMBDA_INVOCATION + requestId + ERROR, e);
             return;
           }
         } else {
@@ -165,10 +177,10 @@ public final class Bootstrap extends AbstractVerticle {
         // Invoke Handler Method
         eb.send(fn, event, new DeliveryOptions().setHeaders(response.headers()), msg -> {
           if (msg.failed()) {
-            fail(MessageFormat.format(LAMBDA_ERROR_TEMPLATE, LAMBDA_VERSION_DATE, requestId), msg.cause());
+            fail(LAMBDA_INVOCATION + requestId + ERROR, msg.cause());
           } else {
             // Post the results of Handler Invocation
-            final String invocationUrl = MessageFormat.format(LAMBDA_INVOCATION_TEMPLATE, LAMBDA_VERSION_DATE, requestId);
+            final String invocationUrl = LAMBDA_INVOCATION + requestId + RESPONSE;
             final MultiMap fnHeaders = msg.result().headers();
             Object fnResult = msg.result().body();
 
@@ -176,7 +188,7 @@ public final class Bootstrap extends AbstractVerticle {
               try {
                 success(invocationUrl, (JsonObject) fnResult, fnHeaders, this::next);
               } catch (EncodeException e) {
-                fail(MessageFormat.format(LAMBDA_ERROR_TEMPLATE, LAMBDA_VERSION_DATE, requestId), e);
+                fail(LAMBDA_INVOCATION + requestId + ERROR, e);
               }
               return;
             }
@@ -191,12 +203,12 @@ public final class Bootstrap extends AbstractVerticle {
               return;
             }
 
-            fail(MessageFormat.format(LAMBDA_ERROR_TEMPLATE, LAMBDA_VERSION_DATE, requestId), "Response is not Buffer of JSON");
+            fail(LAMBDA_INVOCATION + requestId + ERROR, "Response is not Buffer of JSON");
           }
         });
       } else {
         getAbs.cause().printStackTrace();
-        System.exit(1);
+        exit(1);
       }
     });
   }
@@ -205,7 +217,7 @@ public final class Bootstrap extends AbstractVerticle {
     if (ack.failed()) {
       ack.cause().printStackTrace();
       // terminate the process
-      System.exit(1);
+      exit(1);
     } else {
       // process the next call
       // run on context to avoid large stacks
@@ -265,7 +277,7 @@ public final class Bootstrap extends AbstractVerticle {
           ar.cause().printStackTrace();
         }
         // terminate the process
-        System.exit(1);
+        exit(1);
       });
   }
 
@@ -283,7 +295,16 @@ public final class Bootstrap extends AbstractVerticle {
     } catch (IOException e) {
       e.printStackTrace();
       // terminate the process
-      System.exit(1);
+      exit(1);
     }
+  }
+
+  private void exit(int status) {
+    try {
+      vertx.close();
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+    System.exit(status);
   }
 }
