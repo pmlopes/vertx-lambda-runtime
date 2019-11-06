@@ -27,7 +27,7 @@ Create a project and add the dependency:
 <dependency>
   <groupId>xyz.jetdrone</groupId>
   <artifactId>vertx.lambda</artifactId>
-  <version>0.0.3-SNAPSHOT</version>
+  <version>LATEST</version>
 </dependency>
 ```
 
@@ -96,7 +96,7 @@ In your `pom.xml` add the plugins:
         <dependency>
           <groupId>xyz.jetdrone</groupId>
           <artifactId>vertx.lambda</artifactId>
-          <version>0.0.3-SNAPSHOT</version>
+          <version>LATEST</version>
         </dependency>
       </dependencies>
       <configuration>
@@ -161,7 +161,7 @@ In your `pom.xml` add the plugins:
               <artifactItem>
                 <groupId>xyz.jetdrone</groupId>
                 <artifactId>vertx.lambda</artifactId>
-                <version>0.0.3-SNAPSHOT</version>
+                <version>LATEST</version>
                 <type>jar</type>
                 <overWrite>false</overWrite>
                 <outputDirectory>${project.build.directory}</outputDirectory>

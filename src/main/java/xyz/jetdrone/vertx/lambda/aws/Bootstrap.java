@@ -60,7 +60,7 @@ public final class Bootstrap extends AbstractVerticle {
     System.setProperty("vertx.disableH2c", "true");
     System.setProperty("vertx.disableWebsockets", "true");
     System.setProperty("vertx.flashPolicyHandler", "true");
-    System.setProperty("vertx.disableTCCL", "true");
+//    System.setProperty("vertx.disableTCCL", "true");
   }
 
   public static void main(String[] args) {
@@ -95,6 +95,11 @@ public final class Bootstrap extends AbstractVerticle {
       if (deploy.failed()) {
         System.err.println(deploy.cause().getMessage());
         // the whole startup failed
+        try {
+          vertx.close();
+        } catch (Throwable t) {
+          t.printStackTrace();
+        }
         System.exit(1);
       }
     });
@@ -113,7 +118,6 @@ public final class Bootstrap extends AbstractVerticle {
 
   @Override
   public void start() {
-    final JsonObject config = context.config();
     final EventBus eb = vertx.eventBus();
 
     // register all lambda's into the eventbus
@@ -296,7 +300,11 @@ public final class Bootstrap extends AbstractVerticle {
   }
 
   private void exit(int status) {
-    vertx.close();
+    try {
+      vertx.close();
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
     System.exit(status);
   }
 }
