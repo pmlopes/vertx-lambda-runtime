@@ -59,6 +59,15 @@ public final class Bootstrap extends AbstractVerticle {
   public static void main(String[] args) {
     try {
       final VertxOptions vertxOptions = new VertxOptions();
+      // some tuning here
+      final int nrOfCores = vertxOptions.getEventLoopPoolSize() / 2;
+      vertxOptions
+        // reduce the event loops to just the number of cores
+        .setEventLoopPoolSize(Math.max(1, nrOfCores))
+        // reduce the worker thread pool size
+        .setWorkerPoolSize(Math.min(nrOfCores * 4, 20))
+        // reduce the blocking thread pool size
+        .setInternalBlockingPoolSize(Math.min(nrOfCores * 4, 20));
       final JsonObject config = new JsonObject();
       final DeploymentOptions deploymentOptions = new DeploymentOptions().setConfig(config);
 
@@ -128,8 +137,17 @@ public final class Bootstrap extends AbstractVerticle {
           }
 
           final String path = request.path();
+          final String address = path == null || "/".equals(path) ? defaultFn : path;
+
+          if (address == null) {
+            // we can't generate a proper address, therefore we end with a not found.
+            request.response()
+              .setStatusCode(404)
+              .end("No function bound to the path: " + path);
+            return;
+          }
           // Invoke Handler Method
-          eb.send("/".equals(path) ? defaultFn : path, event, new DeliveryOptions().setHeaders(request.headers()), msg -> {
+          eb.send(address, event, new DeliveryOptions().setHeaders(request.headers()), msg -> {
             if (msg.failed()) {
               fail(request, msg.cause());
             } else {
