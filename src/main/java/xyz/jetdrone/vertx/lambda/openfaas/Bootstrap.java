@@ -113,19 +113,26 @@ public final class Bootstrap extends AbstractVerticle {
     }
   }
 
+  // keep a reference to the default function if any
+  private String defaultFn;
+
   @Override
   public void start() {
     final JsonObject config = context.config();
     final EventBus eb = vertx.eventBus();
 
     // Get the default handler class and method name from the Lambda Configuration in the format of <fqcn>
-    final String defaultFn = getenv("_HANDLER");
+    defaultFn = getenv("_HANDLER");
 
     if (!config.getBoolean("dryRun", false)) {
       // register all lambda's into the eventbus
       for (Lambda fn : ServiceLoader.load(Lambda.class)) {
         fn.init(vertx);
-        eb.localConsumer(fn.alias(), fn);
+        String address = fn.alias();
+        if ("/".equals(address)) {
+          defaultFn = "/";
+        }
+        eb.localConsumer(address, fn);
       }
     }
 
