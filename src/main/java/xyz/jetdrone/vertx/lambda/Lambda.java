@@ -49,6 +49,11 @@ import io.vertx.core.json.JsonObject;
  */
 @FunctionalInterface
 public interface Lambda<T> extends Handler<Message<T>> {
+
+  default String alias() {
+    return "/" + getClass().getName().replace('.', '/');
+  }
+
   /**
    * Default initialization. It can be used if a function needs to access vertx or the eventbus.
    *
