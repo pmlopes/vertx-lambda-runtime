@@ -66,6 +66,12 @@ public final class Bootstrap extends AbstractVerticle {
         config.put("port", Integer.parseInt(getenv(PORT_ENV_VAR), 10));
       }
 
+      // a dry run will start and shutdown cleanly the server but not
+      // instantiate any user code.
+      final boolean dryRun = Boolean.parseBoolean(getenv("DRYRUN"));
+      // store it on the config
+      config.put("dryRun", dryRun);
+
       final Vertx vertx = Vertx.vertx(vertxOptions);
 
       vertx.deployVerticle(new Bootstrap(), deploymentOptions, deploy -> {
@@ -78,6 +84,17 @@ public final class Bootstrap extends AbstractVerticle {
             t.printStackTrace();
           }
           System.exit(1);
+        } else {
+          if (dryRun) {
+            // startup successfully,
+            // gracefully terminate the application
+            try {
+              vertx.close();
+            } catch (Throwable t) {
+              t.printStackTrace();
+            }
+            System.exit(0);
+          }
         }
       });
     } catch (RuntimeException e) {
@@ -94,10 +111,12 @@ public final class Bootstrap extends AbstractVerticle {
     // Get the default handler class and method name from the Lambda Configuration in the format of <fqcn>
     final String defaultFn = getenv("_HANDLER");
 
-    // register all lambda's into the eventbus
-    for (Lambda fn : ServiceLoader.load(Lambda.class)) {
-      fn.init(vertx);
-      eb.localConsumer("/" + fn.getClass().getName().replace('.', '/'), fn);
+    if (!config.getBoolean("dryRun", false)) {
+      // register all lambda's into the eventbus
+      for (Lambda fn : ServiceLoader.load(Lambda.class)) {
+        fn.init(vertx);
+        eb.localConsumer(fn.alias(), fn);
+      }
     }
 
     // create an http server
